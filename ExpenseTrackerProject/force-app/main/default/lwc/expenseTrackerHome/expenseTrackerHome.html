@@ -1,0 +1,150 @@
+<template>
+
+    <!-- HERO SECTION -->
+    <div class="hero-section"></div>
+        <div class="overlay">
+
+            <h1 class="title">
+                💰 Expense Tracking System
+            </h1>
+
+            <p class="subtitle">
+                Smart Financial Management Platform
+            </p>
+
+            <div class="description-box">
+                Track expenses, manage budgets, receive automated alerts,
+                and analyze spending patterns using Salesforce automation,
+                dashboards, reports, flows, and Lightning Web Components.
+            </div>
+
+        </div>
+    </div>
+
+    <!-- KPI CARDS -->
+
+    <div class="stats-container">
+
+        <div class="stat-card">
+            <div class="stat-value">₹10K</div>
+            <div class="stat-label">Total Budget</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-value">₹23.1</div>
+            <div class="stat-label">Total Expenses</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-value">₹2.5K</div>
+            <div class="stat-label">Remaining Budget</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Active Alerts</div>
+        </div>
+
+    </div>
+
+    <!-- FEATURE CARDS -->
+
+    <div class="features-container">
+
+        <div class="feature-card" onclick={navigateToExpenses}>
+            <div class="feature-icon">📊</div>
+            <h2>Expense Analytics</h2>
+            <p>Analyze monthly and yearly spending trends.</p>
+        </div>
+
+        <div class="feature-card" onclick={navigateToExpenses}>
+            <div class="feature-icon">💵</div>
+            <h2>Expense Management</h2>
+            <p>Record and monitor expenses efficiently.</p>
+        </div>
+
+        <div class="feature-card" onclick={navigateToBudgets}>
+            <div class="feature-icon">💰</div>
+            <h2>Budget Monitoring</h2>
+            <p>Track spending against budgets.</p>
+        </div>
+
+        <!-- EMAIL ALERTS -->
+        <div class="feature-card" onclick={navigateToEmail}>
+            <div class="feature-icon">⚠️</div>
+            <h2>Email Alerts</h2>
+            <p>Click to send email notification.</p>
+        </div>
+
+        <div class="feature-card" onclick={navigateToDashboards}>
+            <div class="feature-icon">📈</div>
+            <h2>Reports & Dashboards</h2>
+            <p>Interactive financial insights.</p>
+        </div>
+
+        <div class="feature-card" onclick={navigateToHome}>
+            <div class="feature-icon">🤖</div>
+            <h2>Salesforce Automation</h2>
+            <p>Flows, Validation Rules & Automation.</p>
+        </div>
+
+    </div>
+
+    <!-- ABOUT -->
+
+    <div class="feature-card about-section">
+
+        <h2>ℹ About This Project</h2>
+
+        <p>
+            The Expense Tracking System is a Salesforce CRM application
+            developed using Custom Objects, Custom Fields, Record-Triggered
+            Flows, Reports, Dashboards, and Lightning Web Components (LWC).
+            It helps users manage expenses, monitor budgets, automate
+            calculations, and receive email alerts when spending exceeds
+            budget limits.
+        </p>
+
+    </div>
+
+    <!-- TOOLS USED -->
+
+    <div class="feature-card about-section">
+
+        <h2>🛠 Tools & Technologies Used</h2>
+
+        <ul>
+            <li>Custom Objects (Expense & Budget)</li>
+            <li>Custom Fields & Formula Fields</li>
+            <li>Record-Triggered Flow</li>
+            <li>Flow Builder</li>
+            <li>Email Alerts</li>
+            <li>Reports & Dashboards</li>
+            <li>Lightning App Builder</li>
+            <li>Lightning Web Components (LWC)</li>
+        </ul>
+
+    </div>
+
+    <!-- CONTACT -->
+
+    <div class="feature-card contact-section">
+
+        <h2>📞 Contact Us</h2>
+
+        <p>Email: dishabalasubramani75@gmail.com</p>
+
+        <p>Phone: +91 7904728756</p>
+
+        <p>Location: Coimbatore, Tamil Nadu</p>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+        © 2026 Expense Tracking System | Built using Salesforce LWC, Flows,
+        Reports, Dashboards and Automation.
+    </div>
+
+</template>

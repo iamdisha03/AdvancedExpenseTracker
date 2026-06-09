@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Budget Summary" icon-name="standard:budget">
+        <template if:true={budgets}>
+            <template for:each={budgets} for:item="bud">
+                <div key={bud.Id} class="slds-box slds-m-around_small">
+
+                    <p><b>{bud.Name}</b></p>
+                    <p>Total Budget: ₹{bud.Budget_Amount__c}</p>
+                    <p>Total Expenses: ₹{bud.Total_Expenses__c}</p>
+                    <p>Remaining: ₹{bud.Remaining_Budget__c}</p>
+
+                    <span class={bud.statusClass}>
+                        {bud.Budget_Status__c}
+                    </span>
+
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>
