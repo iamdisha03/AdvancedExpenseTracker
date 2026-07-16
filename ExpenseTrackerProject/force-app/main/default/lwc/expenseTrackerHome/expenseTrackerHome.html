@@ -1,150 +1,538 @@
 <template>
 
+    <!-- ========================================================= -->
     <!-- HERO SECTION -->
-    <div class="hero-section"></div>
-        <div class="overlay">
+    <!-- ========================================================= -->
 
-            <h1 class="title">
-                💰 Expense Tracking System
-            </h1>
+    <section class="hero">
 
-            <p class="subtitle">
-                Smart Financial Management Platform
-            </p>
+        <div class="hero-overlay">
 
-            <div class="description-box">
-                Track expenses, manage budgets, receive automated alerts,
-                and analyze spending patterns using Salesforce automation,
-                dashboards, reports, flows, and Lightning Web Components.
+            <div class="hero-left">
+
+                <div class="hero-badge">
+
+                    Salesforce Powered Finance
+
+                </div>
+
+                <h1>
+
+                    Advanced Expense Tracker
+
+                </h1>
+
+                <p>
+
+                    Track your expenses, manage budgets, analyze reports,
+                    and stay financially organized with a modern Salesforce
+                    experience.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <lightning-button
+                        variant="brand"
+                        label="Add Expense"
+                        icon-name="utility:add"
+                        onclick={navigateToExpense}>
+                    </lightning-button>
+
+                    <lightning-button
+                        variant="success"
+                        label="Create Budget"
+                        icon-name="utility:moneybag"
+                        onclick={navigateToBudget}>
+                    </lightning-button>
+
+                </div>
+
+            </div>
+
+            <div class="hero-right">
+
+                <div class="welcome-card">
+
+                    <lightning-icon
+                        icon-name="standard:user"
+                        size="large">
+                    </lightning-icon>
+
+                    <h2>
+
+                        Welcome Back 👋
+
+                    </h2>
+
+                    <p>
+
+                        Monitor every expense,
+                        stay within your budget,
+                        and gain complete financial insights.
+
+                    </p>
+
+                    <div class="mini-grid">
+
+                        <div>
+
+                            <h3>
+
+                                ₹ {dashboard.totalBudget}
+
+                            </h3>
+
+                            <span>Total Budget</span>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+
+                                {dashboard.totalTransactions}
+
+                            </h3>
+
+                            <span>Transactions</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
-    </div>
 
+    </section>
+
+    <!-- ========================================================= -->
     <!-- KPI CARDS -->
+    <!-- ========================================================= -->
 
-    <div class="stats-container">
+    <section class="kpi-grid">
 
-        <div class="stat-card">
-            <div class="stat-value">₹10K</div>
-            <div class="stat-label">Total Budget</div>
+        <div class="kpi-card">
+
+            <div class="icon blue">
+
+                💰
+
+            </div>
+
+            <div>
+
+                <span>Total Budget</span>
+
+                <h2>
+
+                    ₹ {dashboard.totalBudget}
+
+                </h2>
+
+            </div>
+
         </div>
 
-        <div class="stat-card">
-            <div class="stat-value">₹23.1</div>
-            <div class="stat-label">Total Expenses</div>
+        <div class="kpi-card">
+
+            <div class="icon orange">
+
+                💳
+
+            </div>
+
+            <div>
+
+                <span>Total Expenses</span>
+
+                <h2>
+
+                    ₹ {dashboard.totalExpense}
+
+                </h2>
+
+            </div>
+
         </div>
 
-        <div class="stat-card">
-            <div class="stat-value">₹2.5K</div>
-            <div class="stat-label">Remaining Budget</div>
+        <div class="kpi-card">
+
+            <div class="icon green">
+
+                ✅
+
+            </div>
+
+            <div>
+
+                <span>Remaining Budget</span>
+
+                <h2>
+
+                    ₹ {dashboard.remainingAmount}
+
+                </h2>
+
+            </div>
+
         </div>
 
-        <div class="stat-card">
-            <div class="stat-value">3</div>
-            <div class="stat-label">Active Alerts</div>
+        <div class="kpi-card">
+
+            <div class="icon purple">
+
+                📄
+
+            </div>
+
+            <div>
+
+                <span>Transactions</span>
+
+                <h2>
+
+                    {dashboard.totalTransactions}
+
+                </h2>
+
+            </div>
+
         </div>
 
-    </div>
+    </section>
 
-    <!-- FEATURE CARDS -->
+    <!-- ========================================================= -->
+    <!-- QUICK ACTIONS -->
+    <!-- ========================================================= -->
 
-    <div class="features-container">
+    <section class="quick-actions">
 
-        <div class="feature-card" onclick={navigateToExpenses}>
-            <div class="feature-icon">📊</div>
+        <div class="section-title">
+
+            <h2>
+
+                Quick Actions
+
+            </h2>
+
+            <p>
+
+                Frequently used operations
+
+            </p>
+
+        </div>
+
+        <div class="action-grid">
+
+            <div
+                class="action-card"
+                onclick={navigateToExpense}>
+
+                <lightning-icon
+                    icon-name="utility:add"
+                    size="large">
+                </lightning-icon>
+
+                <h3>Add Expense</h3>
+
+                <p>
+
+                    Record a new expense.
+
+                </p>
+
+            </div>
+
+            <div
+                class="action-card"
+                onclick={navigateToBudget}>
+
+                <lightning-icon
+                    icon-name="utility:moneybag"
+                    size="large">
+                </lightning-icon>
+
+                <h3>Create Budget</h3>
+
+                <p>
+
+                    Manage monthly budgets.
+
+                </p>
+
+            </div>
+
+            <div
+                class="action-card"
+                onclick={navigateToReports}>
+
+                <lightning-icon
+                    icon-name="utility:chart"
+                    size="large">
+                </lightning-icon>
+
+                <h3>Reports</h3>
+
+                <p>
+
+                    View analytics.
+
+                </p>
+
+            </div>
+
+            <div
+                class="action-card"
+                onclick={navigateToDashboard}>
+
+                <lightning-icon
+                    icon-name="utility:dashboard"
+                    size="large">
+                </lightning-icon>
+
+                <h3>   📈 
+                    Dashboard</h3>
+
+                <p>
+
+                    Financial overview.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+        <!-- ========================================================= -->
+    <!-- BUDGET UTILIZATION -->
+    <!-- ========================================================= -->
+
+    <section class="budget-section">
+
+        <div class="section-title">
+
+            <h2>Budget Utilization</h2>
+
+            <p>Track how much of your budget has been used</p>
+
+        </div>
+
+        <div class="budget-card">
+
+            <div class="budget-header">
+
+                <span>Budget Used</span>
+
+                <span>{dashboard.usedPercentage}%</span>
+
+            </div>
+
+            <lightning-progress-bar
+                value={dashboard.usedPercentage}
+                size="large">
+            </lightning-progress-bar>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- EXPENSE ANALYTICS -->
+    <!-- ========================================================= -->
+
+    <section class="analytics-section">
+
+        <div class="section-title">
+
             <h2>Expense Analytics</h2>
-            <p>Analyze monthly and yearly spending trends.</p>
+
+            <p>Monthly category-wise expense overview</p>
+
         </div>
 
-        <div class="feature-card" onclick={navigateToExpenses}>
-            <div class="feature-icon">💵</div>
-            <h2>Expense Management</h2>
-            <p>Record and monitor expenses efficiently.</p>
+        <div class="analytics-grid">
+
+            <div class="analytics-card">
+
+                <div class="circle blue">
+
+                    <span>Food</span>
+
+                </div>
+
+                <h3>₹5,000</h3>
+
+            </div>
+
+            <div class="analytics-card">
+
+                <div class="circle green">
+
+                    <span>Bills</span>
+
+                </div>
+
+                <h3>₹4,200</h3>
+
+            </div>
+
+            <div class="analytics-card">
+
+                <div class="circle orange">
+
+                    <span>Travel</span>
+
+                </div>
+
+                <h3>₹3,500</h3>
+
+            </div>
+
+            <div class="analytics-card">
+
+                <div class="circle purple">
+
+                    <span>Shopping</span>
+
+                </div>
+
+                <h3>₹2,500</h3>
+
+            </div>
+
         </div>
 
-        <div class="feature-card" onclick={navigateToBudgets}>
-            <div class="feature-icon">💰</div>
-            <h2>Budget Monitoring</h2>
-            <p>Track spending against budgets.</p>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- RECENT EXPENSES -->
+    <!-- ========================================================= -->
+
+    <section class="expense-table">
+
+        <div class="section-title">
+
+            <h2>Recent Expenses</h2>
+
+            <lightning-button
+                label="View All"
+                variant="brand"
+                onclick={navigateToExpense}>
+            </lightning-button>
+
         </div>
 
-        <!-- EMAIL ALERTS -->
-        <div class="feature-card" onclick={navigateToEmail}>
-            <div class="feature-icon">⚠️</div>
-            <h2>Email Alerts</h2>
-            <p>Click to send email notification.</p>
+        <lightning-datatable
+
+            key-field="Id"
+
+            data={recentExpenses}
+
+            columns={columns}
+
+            hide-checkbox-column>
+
+        </lightning-datatable>
+
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- FEATURES -->
+    <!-- ========================================================= -->
+
+    <section class="feature-grid">
+
+        <div class="feature-card">
+
+            <lightning-icon
+                icon-name="utility:moneybag"
+                size="large">
+            </lightning-icon>
+
+            <h3>Budget Management</h3>
+
+            <p>
+                Create monthly budgets and monitor your spending
+                in real time.
+            </p>
+
         </div>
 
-        <div class="feature-card" onclick={navigateToDashboards}>
-            <div class="feature-icon">📈</div>
-            <h2>Reports & Dashboards</h2>
-            <p>Interactive financial insights.</p>
+        <div class="feature-card">
+
+            <lightning-icon
+                icon-name="utility:chart"
+                size="large">
+            </lightning-icon>
+
+            <h3>Smart Reports</h3>
+
+            <p>
+                Visualize expenses with Salesforce reports
+                and dashboards.
+            </p>
+
         </div>
 
-        <div class="feature-card" onclick={navigateToHome}>
-            <div class="feature-icon">🤖</div>
-            <h2>Salesforce Automation</h2>
-            <p>Flows, Validation Rules & Automation.</p>
+        <div class="feature-card">
+
+            <lightning-icon
+                icon-name="utility:flow"
+                size="large">
+            </lightning-icon>
+
+            <h3>Automation</h3>
+
+            <p>
+                Powered by Salesforce Flows for intelligent
+                expense processing.
+            </p>
+
         </div>
 
-    </div>
+    </section>
 
-    <!-- ABOUT -->
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
 
-    <div class="feature-card about-section">
+    <footer class="footer">
 
-        <h2>ℹ About This Project</h2>
+        <h2>Advanced Expense Tracker</h2>
 
         <p>
-            The Expense Tracking System is a Salesforce CRM application
-            developed using Custom Objects, Custom Fields, Record-Triggered
-            Flows, Reports, Dashboards, and Lightning Web Components (LWC).
-            It helps users manage expenses, monitor budgets, automate
-            calculations, and receive email alerts when spending exceeds
-            budget limits.
+
+            Built using Salesforce Lightning Web Components,
+            Apex, Flows, Reports and Dashboards.
+
         </p>
 
-    </div>
+        <div class="footer-links">
 
-    <!-- TOOLS USED -->
+            <span>Salesforce</span>
 
-    <div class="feature-card about-section">
+            <span>LWC</span>
 
-        <h2>🛠 Tools & Technologies Used</h2>
+            <span>Apex</span>
 
-        <ul>
-            <li>Custom Objects (Expense & Budget)</li>
-            <li>Custom Fields & Formula Fields</li>
-            <li>Record-Triggered Flow</li>
-            <li>Flow Builder</li>
-            <li>Email Alerts</li>
-            <li>Reports & Dashboards</li>
-            <li>Lightning App Builder</li>
-            <li>Lightning Web Components (LWC)</li>
-        </ul>
+            <span>Flow Builder</span>
 
-    </div>
+            <span>Reports</span>
 
-    <!-- CONTACT -->
+        </div>
 
-    <div class="feature-card contact-section">
+        <div class="copyright">
 
-        <h2>📞 Contact Us</h2>
+            © 2026 Advanced Expense Tracker. All Rights Reserved.
 
-        <p>Email: dishabalasubramani75@gmail.com</p>
+        </div>
 
-        <p>Phone: +91 7904728756</p>
-
-        <p>Location: Coimbatore, Tamil Nadu</p>
-
-    </div>
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-        © 2026 Expense Tracking System | Built using Salesforce LWC, Flows,
-        Reports, Dashboards and Automation.
-    </div>
+    </footer>
 
 </template>

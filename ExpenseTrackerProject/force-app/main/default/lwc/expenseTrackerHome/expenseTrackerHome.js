@@ -1,69 +1,195 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import expenseBackground from '@salesforce/resourceUrl/expenseBackground';
+import getDashboardData from '@salesforce/apex/ExpenseDashboardController.getDashboardData';
 
 export default class ExpenseTrackerHome extends NavigationMixin(LightningElement) {
 
-    get heroStyle() {
-        return `
-            background-image:url(${expenseBackground});
-            background-size:cover;
-            background-position:center;
-            background-repeat:no-repeat;
-        `;
+    //=====================================================
+    // DASHBOARD DATA
+    //=====================================================
+
+    dashboard = {
+        totalBudget: 0,
+        totalExpense: 0,
+        remainingAmount: 0,
+        usedPercentage: 0,
+        totalTransactions: 0
+    };
+
+    recentExpenses = [];
+
+    error;
+
+    //=====================================================
+    // DATATABLE COLUMNS
+    //=====================================================
+
+    columns = [
+
+        {
+            label: 'Expense',
+            fieldName: 'Name',
+            type: 'text'
+        },
+
+        {
+            label: 'Category',
+            fieldName: 'Category__c',
+            type: 'text'
+        },
+
+        {
+            label: 'Amount',
+            fieldName: 'Amount__c',
+            type: 'currency',
+            typeAttributes: {
+                currencyCode: 'INR'
+            }
+        },
+
+        {
+            label: 'Date',
+            fieldName: 'Expense_Date__c',
+            type: 'date'
+        },
+
+        {
+            label: 'Payment',
+            fieldName: 'Payment_Method__c',
+            type: 'text'
+        },
+
+        {
+            label: 'Status',
+            fieldName: 'Status__c',
+            type: 'text'
+        }
+
+    ];
+
+    //=====================================================
+    // LOAD DASHBOARD DATA
+    //=====================================================
+
+    @wire(getDashboardData)
+    wiredDashboard({ data, error }) {
+
+        if (data) {
+
+            this.dashboard = {
+
+                totalBudget: data.totalBudget || 0,
+                totalExpense: data.totalExpense || 0,
+                remainingAmount: data.remainingAmount || 0,
+                usedPercentage: Math.round(data.usedPercentage || 0),
+                totalTransactions: data.totalTransactions || 0
+
+            };
+
+            this.recentExpenses = data.recentExpenses || [];
+
+            this.error = undefined;
+
+        }
+
+        else if (error) {
+
+            this.error = error;
+
+            console.error('Dashboard Error', error);
+
+        }
+
     }
 
-    navigateToExpenses() {
+    //=====================================================
+    // NAVIGATION
+    //=====================================================
+
+    navigateToExpense() {
+
         this[NavigationMixin.Navigate]({
+
             type: 'standard__objectPage',
+
             attributes: {
+
                 objectApiName: 'Expense__c',
-                actionName: 'list'
+
+                actionName: 'home'
+
             }
+
         });
+
     }
 
-    navigateToBudgets() {
+    navigateToBudget() {
+
         this[NavigationMixin.Navigate]({
+
             type: 'standard__objectPage',
+
             attributes: {
+
                 objectApiName: 'Budget__c',
-                actionName: 'list'
+
+                actionName: 'home'
+
             }
+
         });
+
     }
+
+    //=====================================================
+    // REPORTS
+    //=====================================================
 
     navigateToReports() {
+
         this[NavigationMixin.Navigate]({
-            type: 'standard__navItemPage',
+
+            type: 'standard__webPage',
+
             attributes: {
-                apiName: 'Reports'
+
+                url: '/lightning/r/Report/00OWU00000MneR32AJ/view?queryScope=userFolders'
+
             }
+
         });
+
     }
 
-    navigateToDashboards() {
+    //=====================================================
+    // DASHBOARD
+    //=====================================================
+
+    navigateToDashboard() {
+
         this[NavigationMixin.Navigate]({
-            type: 'standard__navItemPage',
+
+            type: 'standard__webPage',
+
             attributes: {
-                apiName: 'Dashboards'
+
+                url: '/lightning/r/Dashboard/01ZWU000006clC92AI/view?queryScope=userFolders'
+
             }
+
         });
+
     }
 
-    navigateToHome() {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__navItemPage',
-            attributes: {
-                apiName: 'Salesforce_Automation'
-            }
-        });
+    //=====================================================
+    // COMPONENT LOADED
+    //=====================================================
+
+    connectedCallback() {
+
+        console.log('Expense Tracker Home Loaded');
+
     }
 
-    navigateToEmail() {
-        window.open(
-            'mailto:dishabalasubramani75@gmail.com?subject=Expense Tracker Alert',
-            '_blank'
-        );
-    }
 }
